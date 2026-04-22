@@ -1,0 +1,6 @@
+{
+  "name": "pixelcam",
+  "rewrites": [
+    { "source": "/", "destination": "/pixelcam.html" }
+  ]
+}
