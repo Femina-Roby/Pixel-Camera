@@ -31,6 +31,129 @@
       --font-mono: 'Share Tech Mono', monospace;
     }
 
+    [data-theme="light"] {
+      --bg: #fdfdfd;
+      --bg-grad: radial-gradient(circle at 50% -20%, #e0e5ec, #fdfdfd 80%);
+      --surface: rgba(255, 255, 255, 0.85);
+      --border: rgba(0, 0, 0, 0.15);
+      --accent: #008f5d;
+      --accent-hover: #006642;
+      --accent-glow: rgba(0, 143, 93, 0.2);
+      --accent2: #c41e4d;
+      --text: #2c2c35;
+      --muted: #5e5e6e;
+    }
+
+    [data-theme="light"] header h1 {
+      text-shadow: none;
+      background: linear-gradient(135deg, #222, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    [data-theme="light"] body::before {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    }
+
+    [data-theme="light"] body::after {
+      background: repeating-linear-gradient(0deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 0, 0, 0.03) 2px,
+          rgba(0, 0, 0, 0.03) 4px);
+    }
+
+    [data-theme="light"] .canvas-wrap {
+      background: #fff;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px var(--border);
+    }
+
+    [data-theme="light"] #status-overlay {
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    [data-theme="light"] #status-overlay p {
+      color: #111;
+      text-shadow: none;
+    }
+
+    [data-theme="light"] select,
+    [data-theme="light"] .custom-select-trigger {
+      background: rgba(255, 255, 255, 0.8);
+      color: var(--text);
+    }
+
+    [data-theme="light"] .custom-option:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    [data-theme="light"] .btn-secondary {
+      background: rgba(0, 0, 0, 0.05);
+      border-color: rgba(0, 0, 0, 0.1);
+      color: var(--text);
+    }
+
+    [data-theme="light"] .btn-secondary:hover:not(:disabled) {
+      background: rgba(0, 0, 0, 0.1);
+      border-color: rgba(0, 0, 0, 0.2);
+    }
+
+    [data-theme="light"] input[type="range"] {
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    [data-theme="light"] .toggle-track {
+      background: rgba(0, 0, 0, 0.15);
+    }
+
+    [data-theme="fun"] {
+      --bg: transparent;
+      --bg-grad: none;
+      --surface: rgba(10, 10, 20, 0.6);
+      --border: rgba(255, 0, 255, 0.3);
+      --accent: #ff00ff;
+      --accent-hover: #cc00cc;
+      --accent-glow: rgba(255, 0, 255, 0.5);
+      --accent2: #00ffff;
+      --text: #ffffff;
+      --muted: #cccccc;
+    }
+
+    [data-theme="fun"] .canvas-wrap:hover {
+      animation: fun-wiggle 0.5s ease-in-out infinite;
+    }
+
+    @keyframes fun-wiggle {
+
+      0%,
+      100% {
+        transform: rotate(0deg) scale(1);
+      }
+
+      25% {
+        transform: rotate(2deg) scale(1.02);
+      }
+
+      75% {
+        transform: rotate(-2deg) scale(1.02);
+      }
+    }
+
+    #bgCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+      display: none;
+    }
+
+    [data-theme="fun"] #bgCanvas {
+      display: block;
+    }
+
     body {
       background: var(--bg);
       background-image: var(--bg-grad);
@@ -51,7 +174,7 @@
       position: fixed;
       inset: 0;
       background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
       background-size: 30px 30px;
       pointer-events: none;
       z-index: 0;
@@ -101,7 +224,7 @@
       z-index: 10;
       transition: box-shadow 0.3s;
     }
-    
+
     .canvas-wrap:hover {
       box-shadow: 0 10px 40px rgba(0, 255, 157, 0.15), 0 0 0 1px rgba(0, 255, 157, 0.3);
     }
@@ -115,7 +238,9 @@
       image-rendering: crisp-edges;
     }
 
-    .corner { display: none; }
+    .corner {
+      display: none;
+    }
 
     #status-overlay {
       position: absolute;
@@ -146,7 +271,7 @@
       font-size: 0.9rem;
       color: #fff;
       letter-spacing: 0.1em;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     }
 
     /* controls panel */
@@ -165,7 +290,7 @@
       transition: transform 0.2s, border-color 0.2s;
       z-index: 10;
     }
-    
+
     .ctrl-card:hover {
       transform: translateY(-2px);
       border-color: rgba(255, 255, 255, 0.15);
@@ -215,6 +340,124 @@
       transform: scale(1.2);
     }
 
+    .custom-select-wrapper {
+      position: relative;
+      width: 100%;
+      margin-top: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      user-select: none;
+    }
+
+    .custom-select-trigger {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.4);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .custom-select-trigger:hover,
+    .custom-select-wrapper.open .custom-select-trigger {
+      border-color: var(--accent);
+      box-shadow: 0 0 10px rgba(0, 255, 157, 0.1);
+    }
+
+    .custom-options {
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      right: 0;
+      z-index: 99;
+      background: var(--surface);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 4px;
+      max-height: 250px;
+      overflow-y: auto;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      display: none;
+      flex-direction: column;
+    }
+
+    .custom-select-wrapper.open .custom-options {
+      display: flex;
+    }
+
+    .custom-option {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 12px;
+      cursor: pointer;
+      color: var(--text);
+      transition: background 0.2s;
+    }
+
+    .custom-option:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .custom-option .colors,
+    .custom-select-trigger .colors {
+      letter-spacing: -2px;
+      margin-left: 10px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .custom-option .text,
+    .custom-select-trigger .text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .select-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .select-wrap.inline {
+      width: auto;
+      display: inline-block;
+    }
+
+    .select-wrap::after {
+      content: "";
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-25%);
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid var(--text);
+      pointer-events: none;
+      opacity: 0.8;
+    }
+
+    .custom-select-trigger::after {
+      content: "";
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid var(--text);
+      opacity: 0.8;
+      margin-left: 12px;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
     select {
       background: rgba(0, 0, 0, 0.4);
       color: var(--text);
@@ -230,7 +473,8 @@
       appearance: none;
     }
 
-    select:focus, select:hover {
+    select:focus,
+    select:hover {
       border-color: var(--accent);
       box-shadow: 0 0 10px rgba(0, 255, 157, 0.1);
     }
@@ -346,20 +590,104 @@
       font-size: 0.8rem;
       color: var(--muted);
       letter-spacing: 0.1em;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0, 0, 0, 0.5);
       padding: 4px 10px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.05);
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     video {
       display: none;
     }
 
+    #loading-screen {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      background-image: var(--bg-grad);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-family: var(--font-mono);
+      transition: opacity 0.5s ease-out;
+    }
+
+    .pixel-loader {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .pixel-loader .dot {
+      width: 20px;
+      height: 20px;
+      background: var(--accent);
+      box-shadow: inset -4px -4px 0 rgba(0, 0, 0, 0.2);
+      animation: pixel-bounce 0.6s infinite alternate steps(4);
+    }
+
+    .pixel-loader .dot:nth-child(2) {
+      animation-delay: 0.2s;
+      background: var(--accent2);
+    }
+
+    .pixel-loader .dot:nth-child(3) {
+      animation-delay: 0.4s;
+      background: #00b8ff;
+    }
+
+    @keyframes pixel-bounce {
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(-20px);
+      }
+    }
+
+    #loading-screen p {
+      font-size: 1.5rem;
+      letter-spacing: 0.2em;
+      font-weight: bold;
+      text-shadow: 0 0 10px var(--accent-glow);
+      animation: pulse 1.5s infinite steps(2);
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+    }
   </style>
 </head>
 
 <body>
+  <div id="loading-screen">
+    <div class="pixel-loader">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <p>LOADING</p>
+  </div>
+  <canvas id="bgCanvas"></canvas>
+  <div style="position: absolute; top: 1rem; right: 1rem; z-index: 100;" class="select-wrap inline">
+    <select id="themeSelect" style="width: auto; padding: 6px 30px 6px 12px; font-weight: bold;">
+      <option value="dark">Dark</option>
+      <option value="light">Light</option>
+      <option value="fun">Fun</option>
+    </select>
+  </div>
 
   <header>
     <h1>PIXELCAM</h1>
@@ -368,7 +696,14 @@
   <div
     style="display:flex; flex-direction:column; gap:24px; align-items:center; justify-content:center; width:100%; max-width:800px;">
 
-    <!-- TOP: canvas -->
+    <div class="actions"
+      style="flex: 1 1 100%; flex-direction:row; gap:16px; align-items:center; justify-content:center; margin-top: 8px;">
+      <button class="btn btn-primary" id="startBtn" style="min-width: 140px;">▶ start</button>
+      <button class="btn btn-secondary" id="snapBtn" disabled style="min-width: 140px;">⬡ snapshot</button>
+      <button class="btn btn-secondary" id="recBtn" disabled style="min-width: 140px;">⏺ record</button>
+      <span class="fps-badge" id="fpsBadge" style="margin-left: 16px;">— fps</span>
+    </div>
+
     <div class="canvas-wrap" style="width:100%; max-width:800px;">
       <div class="corner tl"></div>
       <div class="corner tr"></div>
@@ -395,23 +730,54 @@
         <input type="range" id="pixelSize" min="2" max="28" value="10" step="1" />
       </div>
 
-      <div class="ctrl-card" style="flex: 1 1 180px;">
+      <div class="ctrl-card" style="flex: 1 1 180px; position: relative; z-index: 20;">
         <span class="ctrl-label">palette</span>
-        <select id="palette" style="margin-top:4px">
-          <option value="full">full color</option>
-          <option value="gameboy">game boy</option>
-          <option value="nes">nes (16 col)</option>
-          <option value="cga">cga cyan/magenta</option>
-          <option value="grayscale">grayscale</option>
-          <option value="warm">warm sunset</option>
-          <option value="cool">cool neon</option>
-          <option value="cyberpunk">cyberpunk</option>
-          <option value="sepia">sepia</option>
-          <option value="synthwave">synthwave</option>
-          <option value="retro_apple">retro apple II</option>
+        <select id="palette" style="display:none;">
+          <option value="full" selected></option>
+          <option value="dotmatrix"></option>
+          <option value="terminalburst"></option>
+          <option value="grayscale"></option>
+          <option value="goldenhour"></option>
+          <option value="letitsnow"></option>
+          <option value="cyberpunk"></option>
+          <option value="midnightdrive"></option>
+          <option value="retro"></option>
+          <option value="barbie"></option>
+          <option value="stranger_things"></option>
         </select>
+        <div class="custom-select-wrapper" id="palette-wrapper">
+          <div class="custom-select-trigger">
+            <span class="text">Original Colors</span>
+            <span class="colors">🔴🟢🔵</span>
+          </div>
+          <div class="custom-options">
+            <div class="custom-option" data-value="full"><span class="text">Original Colors</span><span
+                class="colors">🔴🟢🔵</span></div>
+            <div class="custom-option" data-value="dotmatrix"><span class="text">Dot Matrix</span><span
+                class="colors">🟢🟡⚫</span></div>
+            <div class="custom-option" data-value="terminalburst"><span class="text">Terminal Burst</span><span
+                class="colors">🟣🔵⚫</span>
+            </div>
+            <div class="custom-option" data-value="grayscale"><span class="text">Grayscale</span><span
+                class="colors">⚫⚪⚫</span></div>
+            <div class="custom-option" data-value="goldenhour"><span class="text">Golden Hour</span><span
+                class="colors">🔴🟠🟡</span></div>
+            <div class="custom-option" data-value="letitsnow"><span class="text">Let It Snow</span><span
+                class="colors">🔵⚪⚫</span></div>
+            <div class="custom-option" data-value="cyberpunk"><span class="text">Cyberpunk</span><span
+                class="colors">🟣🔵⚫</span></div>
+            <div class="custom-option" data-value="midnightdrive"><span class="text">Midnight Drive</span><span
+                class="colors">🟣🔴🟠</span></div>
+            <div class="custom-option" data-value="retro"><span class="text">Retro</span><span
+                class="colors">🟣🔵🟠</span></div>
+            <div class="custom-option" data-value="barbie"><span class="text">Barbie</span><span
+                class="colors">💖🎀✨</span></div>
+            <div class="custom-option" data-value="stranger_things"><span class="text">Stranger Things</span><span
+                class="colors">🔴⚫🔵</span></div>
+          </div>
+        </div>
         <div id="palette-preview"
-          style="display:flex; height:8px; width:100%; margin-top:8px; border-radius:2px; overflow:hidden; background:linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);">
+          style="display:flex; height:8px; width:100%; margin-top:8px; border-radius:2px; overflow:hidden; background:rgba(255,255,255,0.1);">
         </div>
       </div>
 
@@ -431,27 +797,84 @@
 
       <div class="ctrl-card" style="flex: 1 1 180px;">
         <span class="ctrl-label">voice effect</span>
-        <select id="voiceEffect" style="margin-top:4px">
-          <option value="normal">normal</option>
-          <option value="robot">robot</option>
-          <option value="radio">walkie-talkie</option>
-          <option value="alien">alien</option>
-          <option value="echo">deep cave</option>
-        </select>
+        <div class="select-wrap" style="margin-top:4px;">
+          <select id="voiceEffect" style="margin-top:0; padding-right:28px;">
+            <option value="normal">normal</option>
+            <option value="robot">robot</option>
+            <option value="radio">walkie-talkie</option>
+            <option value="echo">echo</option>
+            <option value="chipmunk">chipmunk</option>
+            <option value="minion">minion</option>
+            <option value="olaf">olaf</option>
+          </select>
+        </div>
       </div>
 
-      <div class="actions"
-        style="flex: 1 1 100%; flex-direction:row; gap:16px; align-items:center; justify-content:center; margin-top: 8px;">
-        <button class="btn btn-primary" id="startBtn" style="min-width: 140px;">▶ start</button>
-        <button class="btn btn-secondary" id="snapBtn" disabled style="min-width: 140px;">⬡ snapshot</button>
-        <button class="btn btn-secondary" id="recBtn" disabled style="min-width: 140px;">⏺ record</button>
-        <span class="fps-badge" id="fpsBadge" style="margin-left: 16px;">— fps</span>
-      </div>
+
 
     </div>
   </div>
 
   <video id="vid" autoplay playsinline muted></video>
+
+  <div id="previewModal" style="
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 20px;
+">
+    <div style="
+    width: min(900px, 95vw);
+    background: rgba(15,15,22,0.95);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    backdrop-filter: blur(12px);
+  ">
+      <div style="
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:16px;
+      gap:16px;
+    ">
+        <h2 style="
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        margin: 0;
+        color: var(--text);
+      ">Recording Preview</h2>
+
+        <button id="closePreviewBtn" class="btn btn-secondary" style="padding:8px 16px;">
+          ✕ close
+        </button>
+      </div>
+
+      <video id="previewVideo" controls style="
+      width: 100%;
+      border-radius: 12px;
+      background: #000;
+      display: block;
+    "></video>
+
+      <div style="
+      display:flex;
+      justify-content:center;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-top:16px;
+    ">
+        <button id="downloadPreviewBtn" class="btn btn-primary">⬇ download</button>
+        <button id="discardPreviewBtn" class="btn btn-secondary">🗑 discard</button>
+      </div>
+    </div>
+  </div>
+
 
   <script>
     const canvas = document.getElementById('canvas');
@@ -470,6 +893,138 @@
     const fpsBadge = document.getElementById('fpsBadge');
     const palettePreview = document.getElementById('palette-preview');
     const voiceEffectSelect = document.getElementById('voiceEffect');
+    const themeSelect = document.getElementById('themeSelect');
+    const bgCanvas = document.getElementById('bgCanvas');
+    const bgCtx = bgCanvas.getContext('2d');
+    const previewModal = document.getElementById('previewModal');
+    const previewVideo = document.getElementById('previewVideo');
+    const closePreviewBtn = document.getElementById('closePreviewBtn');
+    const downloadPreviewBtn = document.getElementById('downloadPreviewBtn');
+    const discardPreviewBtn = document.getElementById('discardPreviewBtn');
+
+    let previewBlob = null;
+    let previewUrl = null;
+
+    let bgAnimId = null;
+    const funPixels = [];
+
+    let mouseX = -1000;
+    let mouseY = -1000;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    window.addEventListener('mouseout', () => {
+      mouseX = -1000;
+      mouseY = -1000;
+    });
+
+    function resizeBg() {
+      bgCanvas.width = window.innerWidth;
+      bgCanvas.height = window.innerHeight;
+      if (document.documentElement.getAttribute('data-theme') === 'fun') {
+        initFunPixels();
+      }
+    }
+    window.addEventListener('resize', resizeBg);
+    resizeBg();
+
+    const FUN_EMOJIS = ['👾', '👻', '🎉', '🍕', '🌈', '👽', '😎', '🦄', '😜', '🐬'];
+
+    function initFunPixels() {
+      funPixels.length = 0;
+      const ps = 40;
+      const cols = Math.ceil(bgCanvas.width / ps) + 1;
+      const rows = Math.ceil(bgCanvas.height / ps) + 1;
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          funPixels.push({
+            x: c * ps,
+            y: r * ps,
+            hue: Math.random() * 360,
+            life: Math.random() * Math.PI * 2,
+            speed: 0.01 + Math.random() * 0.02,
+            alpha: 0,
+            isEmoji: Math.random() > 0.95,
+            emoji: FUN_EMOJIS[Math.floor(Math.random() * FUN_EMOJIS.length)]
+          });
+        }
+      }
+    }
+
+    function drawFunBg() {
+      if (document.documentElement.getAttribute('data-theme') !== 'fun') return;
+
+      bgCtx.fillStyle = '#0f0f16';
+      bgCtx.fillRect(0, 0, bgCanvas.width, bgCanvas.height);
+
+      const ps = 40;
+      const cols = Math.ceil(bgCanvas.width / ps) + 1;
+      const rows = Math.ceil(bgCanvas.height / ps) + 1;
+      const gridW = cols * ps;
+      const gridH = rows * ps;
+
+      const scrollY = window.scrollY;
+      const scrollX = window.scrollX;
+
+      funPixels.forEach(p => {
+        p.life += p.speed;
+        if (p.life > Math.PI * 2) {
+          p.life = 0;
+          p.hue = Math.random() * 360;
+        }
+
+        let baseAlpha = (Math.sin(p.life) * 0.5 + 0.5) * 0.15; // faint pulse
+
+        let drawX = (p.x - scrollX) % gridW;
+        if (drawX < -ps) drawX += gridW;
+
+        let drawY = (p.y - scrollY) % gridH;
+        if (drawY < -ps) drawY += gridH;
+
+        const dx = (drawX + ps / 2) - mouseX;
+        const dy = (drawY + ps / 2) - mouseY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        let interactAlpha = 0;
+        if (dist < 200) {
+          interactAlpha = 1.0 - (dist / 200);
+          p.hue = (p.hue + 2) % 360;
+        }
+
+        p.alpha += (Math.max(baseAlpha, interactAlpha) - p.alpha) * 0.1;
+
+        if (p.alpha > 0.01) {
+          if (p.isEmoji) {
+            bgCtx.globalAlpha = p.alpha;
+            bgCtx.font = '24px Arial';
+            bgCtx.fillText(p.emoji, drawX + 8, drawY + 28);
+            bgCtx.globalAlpha = 1.0;
+          } else {
+            bgCtx.fillStyle = `hsla(${p.hue}, 80%, 60%, ${p.alpha})`;
+            bgCtx.fillRect(drawX, drawY, ps - 2, ps - 2);
+          }
+        }
+      });
+
+      bgAnimId = requestAnimationFrame(drawFunBg);
+    }
+
+    themeSelect.addEventListener('change', () => {
+      const t = themeSelect.value;
+      document.documentElement.setAttribute('data-theme', t);
+      if (t === 'fun') {
+        initFunPixels();
+        if (!bgAnimId) drawFunBg();
+      } else {
+        if (bgAnimId) {
+          cancelAnimationFrame(bgAnimId);
+          bgAnimId = null;
+        }
+      }
+    });
 
     let mediaRecorder = null;
     let recordedChunks = [];
@@ -483,21 +1038,61 @@
     let demoGain = null;
     let demoTimeout = null;
 
+    function createPitchShifter(ctx, pitchRatio) {
+      const bufferSize = 2048;
+      const node = ctx.createScriptProcessor(bufferSize, 1, 1);
+      const grainSize = 1024;
+      const buffer = new Float32Array(8192);
+      let writePos = 0;
+      let phase = 0;
+      
+      node.onaudioprocess = (e) => {
+        const input = e.inputBuffer.getChannelData(0);
+        const output = e.outputBuffer.getChannelData(0);
+        for (let i = 0; i < input.length; i++) {
+          buffer[writePos] = input[i];
+          
+          let phase1 = phase;
+          let phase2 = (phase + 0.5) % 1.0;
+          
+          let age1 = grainSize * (1 - phase1);
+          let age2 = grainSize * (1 - phase2);
+          
+          let read1 = writePos - age1;
+          if (read1 < 0) read1 += buffer.length;
+          let read2 = writePos - age2;
+          if (read2 < 0) read2 += buffer.length;
+          
+          let w1 = Math.sin(phase1 * Math.PI);
+          let w2 = Math.sin(phase2 * Math.PI);
+          
+          output[i] = buffer[Math.floor(read1)] * w1 + buffer[Math.floor(read2)] * w2;
+          
+          phase += (pitchRatio - 1) / grainSize;
+          if (phase >= 1) phase -= 1;
+          else if (phase < 0) phase += 1;
+          
+          writePos = (writePos + 1) % buffer.length;
+        }
+      };
+      return node;
+    }
+
     function applyVoiceEffect(isDemo = false) {
       if (!audioSourceNode) return;
-      
+
       // Cleanup old nodes
       audioSourceNode.disconnect();
       audioNodes.forEach(n => n.disconnect());
       audioNodes = [];
-      
+
       const effect = voiceEffectSelect.value;
       let lastNode = audioSourceNode;
-      
-      if (effect === 'robot' || effect === 'alien') {
+
+      if (effect === 'robot') {
         const osc = audioCtx.createOscillator();
-        osc.type = effect === 'alien' ? 'sine' : 'sawtooth';
-        osc.frequency.value = effect === 'alien' ? 50 : 30;
+        osc.type = 'sawtooth';
+        osc.frequency.value = 30;
         const amGain = audioCtx.createGain();
         amGain.gain.value = 0;
         osc.connect(amGain.gain);
@@ -513,9 +1108,9 @@
         const dist = audioCtx.createWaveShaper();
         const n_samples = 44100;
         const curve = new Float32Array(n_samples);
-        for (let i=0; i<n_samples; ++i) {
+        for (let i = 0; i < n_samples; ++i) {
           const x = i * 2 / n_samples - 1;
-          curve[i] = (3 + 400) * x * 20 * (Math.PI/180) / (Math.PI + 400 * Math.abs(x));
+          curve[i] = (3 + 400) * x * 20 * (Math.PI / 180) / (Math.PI + 400 * Math.abs(x));
         }
         dist.curve = curve;
         lastNode.connect(bp);
@@ -536,8 +1131,32 @@
         lastNode.connect(wetGain);
         audioNodes.push(delay, feedback, wetGain);
         lastNode = wetGain;
+      } else if (effect === 'chipmunk') {
+        const pitchShift = createPitchShifter(audioCtx, 1.6);
+        lastNode.connect(pitchShift);
+        audioNodes.push(pitchShift);
+        lastNode = pitchShift;
+      } else if (effect === 'minion') {
+        const pitchShift = createPitchShifter(audioCtx, 1.3);
+        const bp = audioCtx.createBiquadFilter();
+        bp.type = 'bandpass';
+        bp.frequency.value = 1200;
+        bp.Q.value = 1.0;
+        lastNode.connect(pitchShift);
+        pitchShift.connect(bp);
+        audioNodes.push(pitchShift, bp);
+        lastNode = bp;
+      } else if (effect === 'olaf') {
+        const pitchShift = createPitchShifter(audioCtx, 0.75);
+        const lp = audioCtx.createBiquadFilter();
+        lp.type = 'lowpass';
+        lp.frequency.value = 1500;
+        lastNode.connect(pitchShift);
+        pitchShift.connect(lp);
+        audioNodes.push(pitchShift, lp);
+        lastNode = lp;
       }
-      
+
       lastNode.connect(mediaStreamDest);
 
       if (isDemo && audioCtx) {
@@ -546,12 +1165,12 @@
           demoGain = null;
         }
         if (demoTimeout) clearTimeout(demoTimeout);
-        
+
         demoGain = audioCtx.createGain();
         demoGain.gain.value = 0.8;
         lastNode.connect(demoGain);
         demoGain.connect(audioCtx.destination);
-        
+
         demoTimeout = setTimeout(() => {
           if (demoGain) {
             demoGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.1);
@@ -568,21 +1187,16 @@
 
     const PALETTES = {
       full: null,
-      gameboy: [[15, 56, 15], [48, 98, 48], [139, 172, 15], [155, 188, 15]],
-      nes: [
-        [0, 0, 0], [252, 252, 252], [248, 0, 0], [0, 248, 0],
-        [0, 0, 248], [248, 248, 0], [0, 248, 248], [248, 0, 248],
-        [248, 128, 0], [0, 128, 248], [128, 248, 0], [248, 0, 128],
-        [188, 188, 188], [96, 96, 96], [0, 88, 0], [0, 0, 88]
-      ],
-      cga: [[0, 0, 0], [85, 255, 255], [255, 85, 255], [255, 255, 255]],
+      dotmatrix: [[15, 56, 15], [48, 98, 48], [139, 172, 15], [155, 188, 15]],
+      terminalburst: [[0, 0, 0], [85, 255, 255], [255, 85, 255], [255, 255, 255]],
       grayscale: Array.from({ length: 8 }, (_, i) => { const v = Math.round(i * 36); return [v, v, v]; }),
-      warm: [[12, 5, 2], [70, 20, 5], [150, 55, 10], [220, 110, 30], [255, 185, 60], [255, 230, 120], [255, 250, 200]],
-      cool: [[0, 5, 20], [0, 30, 80], [0, 80, 180], [0, 180, 255], [80, 255, 220], [180, 255, 240], [255, 255, 255]],
+      goldenhour: [[12, 5, 2], [70, 20, 5], [150, 55, 10], [220, 110, 30], [255, 185, 60], [255, 230, 120], [255, 250, 200]],
+      letitsnow: [[0, 5, 20], [0, 30, 80], [0, 80, 180], [0, 180, 255], [80, 255, 220], [180, 255, 240], [255, 255, 255]],
       cyberpunk: [[255, 0, 60], [0, 255, 157], [5, 255, 200], [25, 0, 89], [10, 0, 30]],
-      sepia: [[112, 66, 20], [158, 110, 50], [204, 153, 102], [238, 204, 153], [250, 235, 215]],
-      synthwave: [[48, 0, 58], [212, 50, 151], [255, 122, 89], [255, 190, 79], [36, 220, 223]],
-      retro_apple: [[0, 0, 0], [227, 30, 96], [96, 78, 189], [255, 68, 253], [0, 163, 96], [156, 156, 156], [20, 207, 253], [208, 195, 255], [96, 114, 3], [255, 106, 60], [253, 128, 8], [255, 208, 190], [20, 245, 60], [80, 255, 164], [255, 255, 160], [255, 255, 255]]
+      midnightdrive: [[48, 0, 58], [212, 50, 151], [255, 122, 89], [255, 190, 79], [36, 220, 223]],
+      retro: [[18, 5, 40], [53, 13, 89], [214, 34, 115], [255, 108, 17], [53, 212, 235]],
+      barbie: [[255, 255, 255], [255, 182, 193], [255, 105, 180], [224, 33, 138], [148, 0, 89]],
+      stranger_things: [[11, 11, 26], [35, 18, 59], [107, 23, 56], [191, 15, 33], [240, 68, 24]]
     };
 
     function closestColor(r, g, b, pal) {
@@ -652,7 +1266,7 @@
         vid.srcObject = cameraStream;
         await new Promise(r => vid.onloadedmetadata = r);
         vid.play();
-        
+
         if (!audioCtx) {
           audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         }
@@ -710,17 +1324,19 @@
         tracks.push(mediaStreamDest.stream.getAudioTracks()[0]);
       }
       const combinedStream = new MediaStream(tracks);
-      
+
       mediaRecorder = new MediaRecorder(combinedStream, { mimeType: 'video/webm' });
       mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recordedChunks.push(e.data); };
       mediaRecorder.onstop = () => {
-        const blob = new Blob(recordedChunks, { type: 'video/webm' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'pixelcam-' + Date.now() + '.webm';
-        link.click();
-        URL.revokeObjectURL(url);
+        previewBlob = new Blob(recordedChunks, { type: 'video/webm' });
+
+        if (previewUrl) {
+          URL.revokeObjectURL(previewUrl);
+        }
+
+        previewUrl = URL.createObjectURL(previewBlob);
+        previewVideo.src = previewUrl;
+        previewModal.style.display = 'flex';
       };
       mediaRecorder.start();
       isRecording = true;
@@ -739,6 +1355,34 @@
       recBtn.style.borderColor = '';
     }
 
+    function closePreview() {
+      previewModal.style.display = 'none';
+      previewVideo.pause();
+      previewVideo.currentTime = 0;
+    }
+
+    function downloadPreview() {
+      if (!previewBlob) return;
+
+      const link = document.createElement('a');
+      link.href = previewUrl;
+      link.download = 'pixelcam-' + Date.now() + '.webm';
+      link.click();
+    }
+
+    function discardPreview() {
+      closePreview();
+
+      if (previewUrl) {
+        URL.revokeObjectURL(previewUrl);
+        previewUrl = null;
+      }
+
+      previewBlob = null;
+      previewVideo.removeAttribute('src');
+      previewVideo.load();
+    }
+
     startBtn.addEventListener('click', () => {
       streaming ? stopCamera() : startCamera();
     });
@@ -748,6 +1392,16 @@
       link.download = 'pixelcam-' + Date.now() + '.png';
       link.href = canvas.toDataURL('image/png');
       link.click();
+    });
+
+    closePreviewBtn.addEventListener('click', closePreview);
+    downloadPreviewBtn.addEventListener('click', downloadPreview);
+    discardPreviewBtn.addEventListener('click', discardPreview);
+
+    previewModal.addEventListener('click', (e) => {
+      if (e.target === previewModal) {
+        closePreview();
+      }
     });
 
     recBtn.addEventListener('click', () => {
@@ -761,7 +1415,7 @@
     paletteSelect.addEventListener('change', () => {
       const pal = PALETTES[paletteSelect.value];
       if (!pal) {
-        palettePreview.style.background = 'linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet)';
+        palettePreview.style.background = 'rgba(255, 255, 255, 0.1)';
         palettePreview.innerHTML = '';
       } else {
         palettePreview.style.background = 'transparent';
@@ -770,7 +1424,45 @@
     });
 
     voiceEffectSelect.addEventListener('change', () => applyVoiceEffect(true));
+
+    const paletteWrapper = document.getElementById('palette-wrapper');
+    const paletteTrigger = paletteWrapper.querySelector('.custom-select-trigger');
+    const paletteOptions = paletteWrapper.querySelectorAll('.custom-option');
+
+    paletteTrigger.addEventListener('click', () => {
+      paletteWrapper.classList.toggle('open');
+    });
+
+    paletteOptions.forEach(opt => {
+      opt.addEventListener('click', () => {
+        paletteTrigger.innerHTML = opt.innerHTML;
+        paletteSelect.value = opt.getAttribute('data-value');
+        paletteWrapper.classList.remove('open');
+        paletteSelect.dispatchEvent(new Event('change'));
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!paletteWrapper.contains(e.target)) {
+        paletteWrapper.classList.remove('open');
+      }
+    });
+
+    const loadStartTime = Date.now();
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loading-screen');
+      if (loader) {
+        const elapsed = Date.now() - loadStartTime;
+        const delay = Math.max(0, 1000 - elapsed);
+        setTimeout(() => {
+          loader.style.opacity = '0';
+          setTimeout(() => loader.remove(), 500);
+        }, delay);
+      }
+    });
   </script>
+
+
 </body>
 
 </html>
